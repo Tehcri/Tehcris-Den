@@ -117,7 +117,7 @@ nav::before {
     position: relative;    /* Needed for the absolute line positioning */
     padding: 10px 0;       /* Adds vertical space so the line isn't cramped */
     transition: color 0.3s ease;
- 
+    cursor: pointer;
 
 }
 
