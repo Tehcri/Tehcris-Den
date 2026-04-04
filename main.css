@@ -1,0 +1,405 @@
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif}
+body {
+    background-color: #030615; /* Base dark color */
+    
+    background-image: 
+        /* 1. Main Glow from the top right */
+        radial-gradient(circle at 70% 0%, rgba(54, 11, 154, 0.45) 0%, transparent 70%),
+        
+        /* 2. Soft secondary glow slightly inward for a smoother blend */
+        radial-gradient(circle at 85% 20%, rgba(60, 20, 180, 0.3) 0%, transparent 50%),
+        
+        /* 3. The deep background gradient */
+        linear-gradient(135deg, #030615 0%, #050a24 100%);
+
+    background-attachment: fixed;
+    min-height: 100vh;
+    
+    color: white;
+}
+nav {
+    /* 1. Positioning */
+    position: sticky;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    top: 0px;
+          /* Distance from top */
+     /* Pull it back by half its own width */
+    z-index: 1000;      /* Keep it above everything */
+
+    /* 2. Sizing */
+    width: 90%;         /* Takes up 90% of screen width on mobile */
+    max-width: 1200px;  /* Won't grow larger than this on desktop */
+    height: 60px;
+    
+    /* 3. Layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+
+    /* 4. Glassmorphism Styles */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 29px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Remove margin: 20px; — top and transform handle this now */
+    animation: fadeindown 1s ease-out forwards;
+}
+
+/* This creates the fading bottom border */
+nav::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 1%; /* Starts 10% from the left to create the "fade in" space */
+    right: 1%; /* Ends 10% from the right to create the "fade out" space */
+    height: 0.5px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+
+nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1%; /* Starts 10% from the left to create the "fade in" space */
+    right: 1%; /* Ends 10% from the right to create the "fade out" space */
+    height: 0.5px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* This brings back the "clickable" hand icon */
+    transition: all 0.3s ease-in-out;
+}
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+    transition: all 0.3s ease-in-out;
+    /* Clean starting state for the glow */
+    filter: drop-shadow(0 0 0px transparent);
+    margin-right: 50px;
+}
+.logo:hover{
+    transform: scale(1.1);
+}
+/* 1. This container handles the spacing between the links */
+.nav-links {
+    display: flex;
+    gap: 50px;             /* Adjust this number for more or less space */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. Style the individual links */
+.nav-links a {
+    text-decoration: none;
+    font-family: "Titillium Web", sans-serif;
+  font-style: normal;
+    color: white;
+    font-weight: 700;
+    position: relative;    /* Needed for the absolute line positioning */
+    padding: 10px 0;       /* Adds vertical space so the line isn't cramped */
+    transition: color 0.3s ease;
+    cursor: pointer;
+
+}
+
+/* 3. The Rounded Line (Pill shape) */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;          /* Positions it slightly below the text */
+    left: 50%;             /* Start from center */
+    transform: translateX(-50%) scaleX(0); /* Center it and start at 0 width */
+    width: 100%;           /* Target width is 100% of the text */
+    height: 5px;           /* Thickness of your line */
+    background-color: #2663ff; /* Your blue color */
+    border-radius: 20px;   /* Makes the ends perfectly round */
+    transition: transform 0.3s ease; /* Smooth "growing" animation */
+}
+
+/* 4. Grow the line on hover */
+.nav-links a:hover::after {
+    transform: translateX(-50%) scaleX(1); /* Expands from center to full width */
+
+}
+.nav-links a:hover {
+color: rgb(93, 14, 203);
+
+
+}
+.hero {
+    /* Use min-height instead of height so the page can grow if needed */
+    min-height: 60vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin-top: 90px;
+    margin-left:auto;
+}
+.hello{
+    font-family: "Dosis", sans-serif;
+    font-style: normal;
+    font-weight: 450;
+    word-spacing: 2.5px;
+    font-size: 200px;
+    font-size:25px;
+}
+.hello strong{
+    font-family: "Dosis", sans-serif;
+   font-weight: 800;
+   line-height: 29px;
+}
+.glass {
+    animation: fadeindown2 1s ease-out forwards;
+    width: 80%;
+    max-width: 900px;
+    
+    /* REMOVE height if you had it. Use padding to create space inside */
+    padding: 60px 40px; 
+    
+    border-radius: 20px;
+    background-color: rgba(214, 214, 214, 0.068); /* Kept it light for better glass effect */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* CENTER THE TEXT */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative; /* REQUIRED so ::before and ::after borders attach correctly */
+}
+.glass::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5%; /* Starts 10% from the left to create the "fade in" space */
+    right: 5%; /* Ends 10% from the right to create the "fade out" space */
+    height: 0.5px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+.glass::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 5%; /* Starts 10% from the left to create the "fade in" space */
+    right: 5%; /* Ends 10% from the right to create the "fade out" space */
+    height: 1px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+/* Base styles for both side borders */
+.border-left, .border-right {
+    position: absolute;
+    top: 5%;    /* Fades in 5% from the top */
+    bottom: 5%; /* Fades out 5% from the bottom */
+    width: 0.5px; /* The thickness of your border */
+}
+
+.border-left {
+    left: 0;
+    background: linear-gradient(
+        to bottom, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+
+.border-right {
+    right: 0;
+    background: linear-gradient(
+        to bottom, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+.title{
+     font-family: "Bungee", sans-serif;
+font-size:60px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.title {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative; /* Needed for the underline to attach to the text */
+    display: inline-block; /* Keeps the underline the same width as the text */
+    margin-bottom: 30px;
+}
+
+/* We use ::after to create a custom "bar" instead of a border */
+.title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Adjust this to move the bar up or down */
+    left: 0;
+    width: 100%; /* Makes it the same width as the title */
+    height: 8px; /* Thickness of the bar */
+    background-color: #2663ff;
+    border-radius: 10px; /* This gives it the "pill" shape from your photo */
+}
+
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    opacity: 1; 
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: white; 
+    background:rgba(54, 11, 154, 0.45); 
+    padding: 5px 10px;
+    border-radius: 20px;
+    pointer-events: none; /* So it doesn't block clicks */
+    z-index: 9999; /* Keeps it on top of everything */
+    border: 1px solid #00b3ff;
+}
+
+
+@keyframes fadeindown {
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeindown2 {
+    from{
+        opacity: 0;
+        transform: translateY(-70%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- MOBILE OPTIMIZATIONS --- */
+@media (max-width: 768px) {
+    /* Nav adjustments */
+    nav {
+        padding: 10px 15px;
+        margin: 10px auto;
+        max-width: 95%;
+        height: auto; /* Allow nav to grow if links wrap */
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    /* Glass container adjustments */
+    .glass {
+        width: 92%; /* Uses percentage to stay flexible */
+        padding: 40px 20px;
+        box-sizing: border-box; /* FIX: Keeps padding from pushing width out */
+    }
+
+    /* Title adjustments */
+    .title {
+        font-size: 35px; /* Scaled down slightly more */
+        margin-bottom: 20px;
+        white-space: normal; /* Allows wrapping if screen is tiny */
+    }
+
+    .title::after {
+        height: 5px;
+        bottom: -5px;
+    }
+
+    /* Hero section tweaks */
+    .hero {
+        margin-top: 50px;
+        padding: 15px;
+    }
+
+    /* Description text scaling */
+    .hello {
+        font-size: 16px;
+        line-height: 24px;
+        margin-top: 20px;
+    }
+}
+
+/* Stack nav links vertically on very small screens */
+@media (max-width: 480px) {
+    .nav-links {
+        flex-direction: row; /* Keeps them in a row unless you want a vertical menu */
+        gap: 10px;
+        flex-wrap: wrap; /* Allows links to jump to next line if they don't fit */
+    }
+
+    /* THE FIX FOR IMAGE #2: Ensures "Tehcri's Den" fits or scales nicely */
+    .title {
+        font-size: 26px; /* Smaller size for the narrowest phones */
+        letter-spacing: 1px;
+        line-height: 1.2;
+    }
+    
+    .hello {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0 5px;
+    }
+
+    .glass {
+        padding: 30px 15px;
+        width: 95% !important; /* Forces it to stay within the screen */
+    }
+}

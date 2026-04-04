@@ -1,0 +1,590 @@
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif}
+body {
+    background-color: #030615; /* Base dark color */
+    
+    background-image: 
+        /* 1. Main Glow from the top right */
+        radial-gradient(circle at 70% 0%, rgba(54, 11, 154, 0.45) 0%, transparent 70%),
+        
+        /* 2. Soft secondary glow slightly inward for a smoother blend */
+        radial-gradient(circle at 85% 20%, rgba(60, 20, 180, 0.3) 0%, transparent 50%),
+        
+        /* 3. The deep background gradient */
+        linear-gradient(135deg, #030615 0%, #050a24 100%);
+
+    background-attachment: fixed;
+    min-height: 100vh;
+    
+    color: white;
+}
+nav {
+    /* 1. Positioning */
+    position: sticky;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    top: 0px;
+          /* Distance from top */
+     /* Pull it back by half its own width */
+    z-index: 1000;      /* Keep it above everything */
+
+    /* 2. Sizing */
+    width: 90%;         /* Takes up 90% of screen width on mobile */
+    max-width: 1200px;  /* Won't grow larger than this on desktop */
+    height: 60px;
+    
+    /* 3. Layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+
+    /* 4. Glassmorphism Styles */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 29px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Remove margin: 20px; — top and transform handle this now */
+    animation: fadeindown 1s ease-out forwards;
+}
+
+/* This creates the fading bottom border */
+nav::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 1%; /* Starts 10% from the left to create the "fade in" space */
+    right: 1%; /* Ends 10% from the right to create the "fade out" space */
+    height: 0.5px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* This brings back the "clickable" hand icon */
+    transition: all 0.3s ease-in-out;
+}
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+    transition: all 0.3s ease-in-out;
+    /* Clean starting state for the glow */
+    filter: drop-shadow(0 0 0px transparent);
+    margin-right: 50px;
+}
+.logo:hover{
+    transform: scale(1.1);
+}
+nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1%; /* Starts 10% from the left to create the "fade in" space */
+    right: 1%; /* Ends 10% from the right to create the "fade out" space */
+    height: 0.5px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+
+/* 1. This container handles the spacing between the links */
+.nav-links {
+    display: flex;
+    gap: 50px;             /* Adjust this number for more or less space */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. Style the individual links */
+.nav-links a {
+    text-decoration: none;
+    font-family: "Titillium Web", sans-serif;
+  font-style: normal;
+    color: white;
+    font-weight: 700;
+    position: relative;    /* Needed for the absolute line positioning */
+    padding: 10px 0;       /* Adds vertical space so the line isn't cramped */
+    transition: color 0.3s ease;
+ 
+
+}
+
+/* 3. The Rounded Line (Pill shape) */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;          /* Positions it slightly below the text */
+    left: 50%;             /* Start from center */
+    transform: translateX(-50%) scaleX(0); /* Center it and start at 0 width */
+    width: 100%;           /* Target width is 100% of the text */
+    height: 5px;           /* Thickness of your line */
+    background-color: #2663ff; /* Your blue color */
+    border-radius: 20px;   /* Makes the ends perfectly round */
+    transition: transform 0.3s ease; /* Smooth "growing" animation */
+}
+
+/* 4. Grow the line on hover */
+.nav-links a:hover::after {
+    transform: translateX(-50%) scaleX(1); /* Expands from center to full width */
+
+}
+.nav-links a:hover {
+color: rgb(93, 14, 203);
+
+
+}
+
+.hero {
+    /* Use min-height instead of height so the page can grow if needed */
+    min-height: 60vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin-top: 90px;
+    margin-left:auto;
+}
+.title {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative; /* Needed for the underline to attach to the text */
+    display: inline-block; /* Keeps the underline the same width as the text */
+    margin-bottom: 55px;
+    text-align: center;
+    align-self: center;
+}
+hr {
+    /* 1. Remove the default browser 'etched' border */
+    border: none;
+    
+    /* 2. Give it a solid height (thickness) */
+    height: 1px;
+    
+    /* 3. Give it a color that stands out on dark blue */
+    background-color: rgba(255, 255, 255, 0.2); 
+    
+    /* 4. Control the width and center it */
+    width: 100%;
+    margin: 40px auto; 
+    
+   
+    
+}
+/* Paragraph intro */
+p.text-under {
+    font-size: 25px;
+    line-height: 1.5;
+    color: #fff; /* White text */
+    margin-bottom: 20px;
+     font-family: "Dosis", sans-serif;
+    font-weight: 300;
+    text-align: center;
+    width: 100%;
+}
+p.text-under strong{
+    font-family: "Dosis", sans-serif;
+      font-weight: 600;
+}
+
+
+/* We use ::after to create a custom "bar" instead of a border */
+.title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Adjust this to move the bar up or down */
+    left: 0;
+    width: 100%; /* Makes it the same width as the title */
+    height: 8px; /* Thickness of the bar */
+    background-color: #2663ff;
+    border-radius: 10px; /* This gives it the "pill" shape from your photo */
+}
+
+.glass {
+    animation: fadeindown2 1s ease-out forwards;
+    width: 90%;
+    max-width: 1500px;
+     animation: fadeindown2 1s ease-out forwards;
+    /* REMOVE height if you had it. Use padding to create space inside */
+    padding: 60px 80px; 
+    
+    border-radius: 20px;
+    background-color: rgba(214, 214, 214, 0.068); /* Kept it light for better glass effect */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* CENTER THE TEXT */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative; /* REQUIRED so ::before and ::after borders attach correctly */
+}
+.glass::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5%; /* Starts 10% from the left to create the "fade in" space */
+    right: 5%; /* Ends 10% from the right to create the "fade out" space */
+    height: 1px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+.glass::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 5%; /* Starts 10% from the left to create the "fade in" space */
+    right: 5%; /* Ends 10% from the right to create the "fade out" space */
+    height: 0.8px; /* The thickness of your border */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+}
+/* Base styles for both side borders */
+
+.category-section {
+    width:100%;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+}
+/* --- Centering and enlarging the category titles --- */
+.category-title {
+    font-size: 50px;           /* Makes it significantly larger */
+    text-align: center;        /* Centers the text within its own container */
+    width: 100%;               /* Ensures the title takes up the full width to allow centering */
+    margin-bottom: 30px;       /* Adds some space between the heading and the grid */
+    font-family: "arial", sans-serif; /* Optional: Uses one of your imported bold fonts */
+    letter-spacing: 2px;
+}
+.design-grid{
+    display: grid;
+    /* This creates 3 columns on desktop, and automatically drops to 1 on mobile */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    width: 100%;
+    padding: 20px 0;
+}
+.design-card{
+    position: relative;
+    background:rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.card-inner img{
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+/* --- THE POWERFUL GLOW --- */
+.design-card:hover {
+    /* Keeping the lift and border glow you already had */
+    transform: translateY(-15px);
+    border: 1px solid rgba(97, 4, 177, 0.7); /* Slightly brighter border */
+
+    /* The New Spreading Glow Shadow */
+    /* Layer 1: Strong dark shadow for grounding (depth) */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 
+    
+                /* Layer 2: Main blue glow near the card */
+                0 0 30px rgba(129, 13, 206, 0.6), 
+                
+                /* Layer 3: THE SPREADING GLOW (Increased radius and softness) */
+                0 0 80px rgba(179, 105, 219, 0.4); 
+}
+
+
+/* Zoom the image slightly when the card is hovered */
+.design-card:hover img{
+    transform:  scale(1.1);
+}
+
+.card-info{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Use a gradient instead of a solid color to make it blend */
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 20px;
+    /* This keeps it hidden until you hover */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+}
+/* Show the text only when hovering over the card */
+.design-card:hover .card-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* The Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Stays on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark backdrop */
+    backdrop-filter: blur(5px);
+}
+
+/* The Full Image */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    margin-top: 5vh;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(38, 99, 255, 0.5); /* Matching your blue glow */
+}
+
+/* Close Button */
+.close-modal {
+ position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    /* This makes the color change feel "soft" instead of instant */
+    transition: all 0.3s ease-in-out; 
+    display: inline-block;
+}
+
+
+/* --- Hides the text only when the image is in full view --- */
+#imageModal #caption {
+    display: none !important;
+}
+
+
+/* 1. Add the animation to the modal content */
+.modal-content {
+    animation-name: zoomIn;
+    animation-duration: 0.4s;
+}
+
+
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    opacity: 1; 
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: white; 
+    background:rgba(54, 11, 154, 0.45); 
+    padding: 5px 10px;
+    border-radius: 20px;
+    pointer-events: none; /* So it doesn't block clicks */
+    z-index: 9999; /* Keeps it on top of everything */
+    border: 1px solid #00b3ff;
+}
+
+/* 2. Define how the animation looks */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8); /* Starts slightly smaller */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1); /* Grows to full size */
+    }
+}
+
+/* 3. Make the dark background fade in too */
+.modal {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* --- Cleaned Hover Effect --- */
+.close-modal:hover {
+    color: #2663ff;
+    text-shadow: 0 0 15px rgba(38, 99, 255, 0.8), 
+                 0 0 30px rgba(38, 99, 255, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeindown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} /* ✅ THIS WAS MISSING */
+
+@keyframes fadeindown2 {
+    from {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* This class will be added/removed by JavaScript */
+.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- MOBILE OPTIMIZATIONS FOR GRAPHIC DESIGNS --- */
+@media (max-width: 768px) {
+    /* 1. Scale the main title so it doesn't break into two lines */
+  .title {
+        font-size: 38px !important; /* Smaller fixed size for reliability */
+        display: flex !important;
+        flex-direction: column !important; /* Forces the stack */
+        align-items: center !important;
+        text-align: center !important;
+        line-height: 1.2 !important;
+        margin-bottom: 50px !important;
+        width: 100% !important;
+    }
+
+    .title span {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    /* This fixes the blue bar position */
+    .title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Centers it perfectly */
+        width: 160px !important; /* Gives it a set width so it doesn't stretch */
+        height: 6px !important;
+        background-color: #2663ff !important;
+        border-radius: 10px !important;
+    }
+
+    /* 2. Fix the glass container padding */
+    .glass {
+        width: 95% !important;
+        padding: 40px 20px !important;
+        align-items: center; /* Centers the headings and text */
+    }
+
+    /* 3. Make Category Headings (Posters/Thumbnails) big and centered */
+    .category-title {
+        font-size: 35px !important;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* 4. Adjust the Grid for mobile */
+    .design-grid {
+        grid-template-columns: 1fr; /* Force one card per row */
+        gap: 20px;
+        padding: 10px;
+    }
+
+    /* 5. Adjust Card height so images aren't too tall on phones */
+    .card-inner img {
+        height: 250px; 
+    }
+
+    /* 6. Navigation adjustments */
+    nav {
+        width: 95%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+    
+}
+
+/* Specific fix for the Full Image Modal on Mobile */
+@media (max-width: 480px) {
+    .modal-content {
+        max-width: 95%;
+        margin-top: 15vh; /* Push it down a bit so the X is easier to tap */
+    }
+
+    .close-modal {
+        top: 10px;
+        right: 20px;
+        font-size: 50px; /* Make it HUGE so it's easy to hit with a thumb */
+    }
+}
