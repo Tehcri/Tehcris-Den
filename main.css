@@ -326,6 +326,7 @@ letter-spacing:2px;
 
 
 
+
 /* --- MOBILE OPTIMIZATIONS --- */
 @media (max-width: 768px) {
     /* Nav adjustments */
@@ -358,6 +359,10 @@ letter-spacing:2px;
         white-space: normal; /* Allows wrapping if screen is tiny */
     }
 
+    .title span{
+    font-size: 40px;
+}
+
     .title::after {
         height: 5px;
         bottom: -5px;
@@ -375,7 +380,33 @@ letter-spacing:2px;
         line-height: 24px;
         margin-top: 20px;
     }
+
+
+
+    nav {
+        height: auto;          /* Allow navbar to grow with content */
+        padding: 15px 20px;    /* Less padding on sides */
+        flex-direction: column; /* Stack logo and links vertically */
+        gap: 15px;             /* Space between logo and links */
+    }
+
+    .logo img {
+        margin-right: 0;       /* Remove that big desktop margin */
+        height: 35px;          /* Slightly smaller logo */
+    }
+
+    .nav-links {
+        gap: 15px;             /* Shrink space between links */
+        flex-wrap: wrap;       /* Allow links to wrap to a second line if needed */
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;       /* Smaller text for mobile */
+        padding: 5px 0;
+    }
 }
+
 
 /* Stack nav links vertically on very small screens */
 @media (max-width: 480px) {
