@@ -463,6 +463,33 @@ p.text-under strong{
         line-height: 1.4;
     }
 
+    nav {
+        height: auto;          /* Allow navbar to grow with content */
+        padding: 15px 20px;    /* Less padding on sides */
+        flex-direction: column; /* Stack logo and links vertically */
+        gap: 15px;             /* Space between logo and links */
+    }
+
+    .logo img {
+        margin-right: 0;       /* Remove that big desktop margin */
+        height: 35px;          /* Slightly smaller logo */
+    }
+
+    .nav-links {
+        gap: 15px;             /* Shrink space between links */
+        flex-wrap: wrap;       /* Allow links to wrap to a second line if needed */
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;       /* Smaller text for mobile */
+        padding: 5px 0;
+    }
+     
+    .title span{
+    font-size: 40px;
+}
+
     /* 6. Hero section tweaks */
     .hero {
         margin-top: 40px;
