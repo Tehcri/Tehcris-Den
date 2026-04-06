@@ -544,83 +544,145 @@ letter-spacing:2px;
 
 
 
-
 /* --- MOBILE OPTIMIZATIONS --- */
 @media (max-width: 768px) {
-    /* Nav adjustments */
+    /* 1. THE BIG FIX: Glass container */
+    .glass {
+        width: 92% !important;   /* Use percentage to fit any screen */
+        max-width: 100%;
+        padding: 40px 20px !important; /* Reduced padding so text has room */
+        box-sizing: border-box !important; /* FIX: Keeps padding INSIDE the width */
+        align-items: center;      /* Centers content for better mobile look */
+        text-align: center;
+    }
+
+    /* 2. Title resizing to prevent "Den" from dropping */
+    .title {
+        font-size: clamp(30px, 8vw, 45px) !important; /* Automatically scales */
+        margin-bottom: 30px;
+        white-space: nowrap; /* Forces "Tehcri's Den" to stay on one line */
+    }
+
+    .title::after {
+        height: 5px;
+        bottom: -8px;
+    }
+
+    /* 3. Text adjustments */
+    p.text-under {
+        font-size: 16px !important;
+        line-height: 1.5;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* 4. Nav adjustments */
     nav {
         padding: 10px 15px;
         margin: 10px auto;
-        max-width: 95%;
-        height: auto; /* Allow nav to grow if links wrap */
+        width: 95%;
+        height: auto; /* Allows nav to grow if links stack */
+        flex-direction: column;
     }
+
 
     .nav-links {
         gap: 15px;
+        margin-left: 0;
     }
 
     .nav-links a {
         font-size: 14px;
     }
 
-    /* Glass container adjustments */
-    .glass {
-        width: 92%; /* Uses percentage to stay flexible */
-        padding: 40px 20px;
-        box-sizing: border-box; /* FIX: Keeps padding from pushing width out */
+    /* 5. Section list adjustments */
+    .section-list {
+        text-align: left;
+        width: 100%;
     }
 
-    /* Title adjustments */
-    .title {
-        font-size: 35px; /* Scaled down slightly more */
-        margin-bottom: 20px;
-        white-space: normal; /* Allows wrapping if screen is tiny */
+    .section-list ul li {
+        font-size: 16px !important;
+        padding-left: 25px;
+        line-height: 1.4;
     }
 
-    .title::after {
-        height: 5px;
-        bottom: -5px;
+    nav {
+        height: auto;          /* Allow navbar to grow with content */
+        padding: 15px 20px;    /* Less padding on sides */
+        flex-direction: column; /* Stack logo and links vertically */
+        gap: 15px;             /* Space between logo and links */
     }
 
-    /* Hero section tweaks */
+    .logo img {
+        margin-right: 0;       /* Remove that big desktop margin */
+        height: 35px;          /* Slightly smaller logo */
+    }
+
+    .nav-links {
+        gap: 15px;             /* Shrink space between links */
+        flex-wrap: wrap;       /* Allow links to wrap to a second line if needed */
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;       /* Smaller text for mobile */
+        padding: 5px 0;
+    }
+     
+    .title span{
+    font-size: 40px;
+}
+
+    /* 6. Hero section tweaks */
     .hero {
-        margin-top: 50px;
-        padding: 15px;
+        margin-top: 40px;
+        padding: 10px;
+    }
+    .logo img {
+        margin-right: 0; /* Remove the 50px desktop margin */
+        height: 35px;    /* Slightly smaller logo for mobile */
     }
 
-    /* Description text scaling */
-    .hello {
-        font-size: 16px;
-        line-height: 24px;
-        margin-top: 20px;
-    }
+
+.github, .insta, .email {
+    display: flex;
+    flex-direction: column; /* Stacks icon on top of text */
+    align-items: center;    /* Centers them horizontally */
+    text-align: center;
+    margin-top: 40px;
+}
+
+.github-icon, .insta-icon, .email-icon {
+    margin-right: 0;        /* Remove desktop side-margin */
+    margin-bottom: 10px;    /* Add space between icon and text */
+    transform: translateY(0); /* Reset desktop translate for cleaner mobile look */
+}
+
+.github .hi, .insta .hi, .email .hi {
+    font-size: 5vh;         /* Slightly smaller text so it fits better on small screens */
+    margin-bottom: 20px;
 }
 
 
 
-/* Stack nav links vertically on very small screens */
+}
+
+/* Specific fix for very small phones (Image #2) */
 @media (max-width: 480px) {
-    .nav-links {
-        flex-direction: row; /* Keeps them in a row unless you want a vertical menu */
-        gap: 10px;
-        flex-wrap: wrap; /* Allows links to jump to next line if they don't fit */
+    .title {
+        font-size: 24px !important; /* Even smaller to ensure fit */
     }
 
-    /* THE FIX FOR IMAGE #2: Ensures "Tehcri's Den" fits or scales nicely */
-    .title {
-        font-size: 26px; /* Smaller size for the narrowest phones */
-        letter-spacing: 1px;
-        line-height: 1.2;
+    .nav-links {
+        /* Keep links in a row but wrap them if they run out of space */
+        flex-direction: row; 
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
     
-    .hello {
-        font-size: 14px;
-        line-height: 20px;
-        padding: 0 5px;
-    }
-
     .glass {
-        padding: 30px 15px;
-        width: 95% !important; /* Forces it to stay within the screen */
+        padding: 30px 15px !important;
     }
 }
