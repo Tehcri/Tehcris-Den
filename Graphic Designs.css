@@ -296,17 +296,8 @@ p.text-under strong{
     overflow: hidden;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: #3a3a3a; 
-    background-image: linear-gradient(to right, #3a3a3a 0%, #4a4a4a 20%, #3a3a3a 40%, #3a3a3a 100%);
-    background-repeat: no-repeat;
-    background-size: 800px 104px; 
-    display: inline-block;
-    position: relative;
-    
-    /* The animation */
-    animation: shimmer 1.5s infinite linear;
 }
-}
+
 .card-inner img{
     width: 100%;
     height: 350px;
